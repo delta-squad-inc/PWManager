@@ -1,0 +1,4 @@
+python=3.8.5
+pip=20.3.3
+redis=3.5.3
+pycryptodome=3.9.9
