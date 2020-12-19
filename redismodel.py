@@ -99,12 +99,12 @@ class PasswordManager(cipher.CipherModel):
         Returns:
             str: returns response string
         """
-        encArgs = self.encrypt(_value)
+        pw, nonce, tag = self.encrypt(_value)
 
         try:
-            self.redisConnection.hset(_key, "pw", encArgs[0])
-            self.redisConnection.hset(_key, "nonce", encArgs[1])
-            self.redisConnection.hset(_key, "tag", encArgs[2])
+            self.redisConnection.hset(_key, "pw", pw)
+            self.redisConnection.hset(_key, "nonce", nonce)
+            self.redisConnection.hset(_key, "tag", tag)
             return "OK"
         
         except redis.exceptions.AuthenticationError:
