@@ -6,14 +6,16 @@ from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES
 
 class PasswordManager(cipher.CipherModel):
-    def __init__(self, _port: int, _host: str, _db: int, _password = None, _ssl: bool = False, _salt: int = 16):
-        """constructor of the redis manager class
+    def __init__(self, _port: int = 6379, _host: str = 'localhost', _db: int = 0, _password = "", _ssl: bool = False, _salt: int = 16):
+        """Class constructor
 
         Args:
-            _port (int): port number, eg.: 80
-            _host (str): host name, eg.: localhost
-            _db (int): database 
-            _ssl (bool): if set to True, a secure connection is establish between the client and the server via SSL/TLS
+            _port (int, optional): Server port of redis. Defaults to 6379.
+            _host (str, optional): Host of redis. Defaults to 'localhost'.
+            _db (int, optional):  Defaults to 0.
+            _password (str, optional): masterpassword. Defaults to "".
+            _ssl (bool, optional): SSl handshake. Defaults to False.
+            _salt (int, optional): encryption key salt. Defaults to 16.
         """
         
         self.redisConnection = redis.Redis(host=_host, port=_port, db=_db, password=_password) ##initalize redis_server 
@@ -25,7 +27,6 @@ class PasswordManager(cipher.CipherModel):
         Args:
             _key (str): key name
             _value (str): value
-
         Returns:
             string: returns response message
         """
@@ -46,10 +47,8 @@ class PasswordManager(cipher.CipherModel):
 
     def getValue(self, _key: str) -> any:
         """get the value based on the key in the database
-
         Args:
             _key (str): key name
-
         Returns:
             any: returns the value if it exists, else nil
         """
@@ -91,11 +90,9 @@ class PasswordManager(cipher.CipherModel):
     
     def setHash(self, _key: str, _value: str) -> str:
         """sets hash value based on a key to redis in a particular order
-
         Args:
             _key (str): key name
             _value: string describing your password
-
         Returns:
             str: returns response string
         """
@@ -119,16 +116,16 @@ class PasswordManager(cipher.CipherModel):
 
     def getHash(self, _key: str) -> dict:
         """returns hash values based on key from redis database
-
         Args:
             _key (str): key name
-
         Returns:
             dict: returns a dictionary
         """
 
         try:
             encData = self.redisConnection.hgetall(_key)
+            if encData == {}:
+                return 'Wrong site name entered'
             return self.decrypt(encData)
 
 

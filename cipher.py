@@ -2,11 +2,14 @@ from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Hash import SHA512
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES
+import string
+import secrets
 
 
 class CipherModel:
     def __init__(self, _password: str, _salt: int = 16):
- 
+        
+        print(_password)
         self.key = PBKDF2(_password, _salt, 32)
     
     def encrypt(self, data: str) -> tuple:
@@ -41,6 +44,18 @@ class CipherModel:
             return plaintext.decode()
         except ValueError:
             return "Incorrect key or corrupted message"
+    
+    def generatepassword(self, length: int = 22) -> str:
+        """Method that generates a random sequence of strings
+
+        Args:
+            length (int, optional): Return string length. Defaults to 16.
+
+        Returns:
+            str: randomly generated string
+        """
+        password = ''.join(secrets.choice(string.ascii_letters + string.digits+'$_-') for i in range(length))
+        return password
 
 
 
