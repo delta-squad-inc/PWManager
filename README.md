@@ -31,3 +31,6 @@ An other solution might be to try out the redis windows version which is not the
 
 # Instructions for running it on Linux
 Simply download the Password manager for linux version which is a binary file essentially.
+
+# How it looks
+
