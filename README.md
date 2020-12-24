@@ -31,6 +31,8 @@ An other solution might be to try out the redis windows version which is not the
 
 # Instructions for running it on Linux
 Simply download the Password manager for linux version which is a binary file essentially.
+What you need to do is download the linux release and then install redis in the following manner and change the redis.conf file. 
+If you don't feel like building the app yourself, then you can download the sourcode.zip as well which will contain the platforms_linux directory. You can then paste in in the same location (or move it) where the binary file is located, and then rename the directory to **platforms**. Run it like ./pwmanager and you are good to go!
 
 # How it looks
 
