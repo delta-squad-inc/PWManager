@@ -2,6 +2,7 @@
 
 Home made password manager fresh out of the oven
 The UI look is generated with PyQt Designer, and the source code and basic toggle animations are from https://github.com/Wanderson-Magalhaes/Toggle_Burguer_Menu_Python_PySide2.
+This password manager uses redis as a database to keep your passwords safe, and has a client side encryption/decryption.
 
 # Instructions for running it on windows
 There are multiple ways to do it, the first and most forward solution is for you to build it yourself on your machine via pyinstaller or auto-py-to-exe. There is a great tutorial for the auto-py-to-exe: https://www.youtube.com/watch?v=04AAjFBG-bQ
