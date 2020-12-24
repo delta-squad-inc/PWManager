@@ -34,3 +34,4 @@ Simply download the Password manager for linux version which is a binary file es
 
 # How it looks
 
+![](images/pw1.PNG)
